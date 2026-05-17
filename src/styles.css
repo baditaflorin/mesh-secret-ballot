@@ -49,3 +49,109 @@ body,
   opacity: 0.6;
   font-variant-numeric: tabular-nums;
 }
+
+.ballot-screen {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 4.5rem 1.25rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.ballot-header {
+  text-align: center;
+}
+.ballot-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.6rem;
+}
+.ballot-status {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+.ballot-name input,
+.ballot-question-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--mesh-border, #333);
+  background: var(--mesh-bg-elev, #1a1a1a);
+  color: var(--mesh-fg, #eee);
+  font-family: inherit;
+}
+.ballot-question-input {
+  resize: vertical;
+  min-height: 4rem;
+}
+.ballot-compose,
+.ballot-vote,
+.ballot-reveal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: opacity 200ms ease;
+}
+.ballot-question {
+  font-size: 1.15rem;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid #b5b5b5;
+  background: var(--mesh-bg-elev, #1a1a1a);
+  border-radius: 0.4rem;
+}
+.ballot-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+.ballot-yes,
+.ballot-no,
+.ballot-open,
+.ballot-reveal-all,
+.ballot-next {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.6rem;
+  border: 1px solid var(--mesh-border, #333);
+  background: var(--mesh-bg-elev, #1a1a1a);
+  color: var(--mesh-fg, #eee);
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+.ballot-yes:hover:not(:disabled),
+.ballot-no:hover:not(:disabled),
+.ballot-open:hover:not(:disabled),
+.ballot-reveal-all:hover:not(:disabled),
+.ballot-next:hover:not(:disabled) {
+  opacity: 0.85;
+}
+.ballot-yes:disabled,
+.ballot-no:disabled,
+.ballot-open:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ballot-yes {
+  border-color: #4ade80;
+  color: #4ade80;
+}
+.ballot-no {
+  border-color: #f87171;
+  color: #f87171;
+}
+.ballot-chip {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  text-align: center;
+}
+.ballot-tally {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 1rem;
+}

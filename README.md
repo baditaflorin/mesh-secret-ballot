@@ -82,7 +82,11 @@ bash ../mesh-common/scripts/screenshot-app.sh    # regenerate docs/screenshot.pn
 
 ## Privacy
 
-See `docs/privacy.md` for the threat model — what other peers in the mesh see, what the self-hosted infra sees, what stays local.
+This app uses a **commit-reveal** flow: during the committing phase, only a SHA-256 hash of each peer's `{vote, salt}` is published — the vote itself stays in localStorage. During the reveal phase, every peer publishes their salt + vote so the others can verify the hash.
+
+**Honest-client caveat.** In the reveal phase, anyone running the stock client (or anyone watching the Y.Doc directly with devtools / a custom client) sees the full `peerId → vote` mapping. The UI hides the mapping and only aggregates `X yes · Y no`, but a peer running a tampered client can read the raw map. **True anonymity is not guaranteed without trusted clients** — this is a soft-anonymous "show of hands you can't peek at until everyone reveals," not a cryptographic mixnet.
+
+See `docs/privacy.md` for the broader threat model — what other peers in the mesh see, what the self-hosted infra sees, what stays local.
 
 ## License
 
