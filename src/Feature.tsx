@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import {
+  MeshNameInput,
   useNamedPeer,
   usePhase,
   useCommitRevealHook,
@@ -74,15 +75,13 @@ function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
         </p>
       </header>
 
-      <div className="ballot-name">
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="your name"
-          maxLength={48}
-          aria-label="your name"
-        />
-      </div>
+      <MeshNameInput
+        className="ballot-name"
+        value={name}
+        onChange={setName}
+        placeholder="your name"
+        maxLength={48}
+      />
 
       {ph.phase === "composing" && (
         <div className="ballot-compose">
