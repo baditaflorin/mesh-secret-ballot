@@ -38,6 +38,20 @@ function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
     }
   }, [ph.phase, cr.myHash, cr.myReveal, cr]);
 
+  // Test-only handle: expose the live Yjs doc + the commit-reveal key so an e2e
+  // can inspect the raw shared-doc bytes and prove the privacy property — that
+  // during the commit phase the doc holds only a salted hash, never a plaintext
+  // "yes"/"no". A plain reference; no behaviour change to the render path.
+  useEffect(() => {
+    (window as unknown as { __ballotRoom?: { doc: typeof room.doc; key: string } }).__ballotRoom = {
+      doc: room.doc,
+      key: `ballot-${round}`,
+    };
+    return () => {
+      delete (window as unknown as { __ballotRoom?: unknown }).__ballotRoom;
+    };
+  }, [room, round]);
+
   const trimmed = name.trim();
   const present = room.peerCount + 1;
   const committed = Object.values(cr.entries).filter((e) => e.hash).length;
